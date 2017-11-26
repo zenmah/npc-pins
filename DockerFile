@@ -1,6 +1,6 @@
 # Angular App ========================================
-FROM johnpapa/angular-cli as angular-app
-LABEL authors="Shayne Boyer, John Papa"
+FROM teracy/angular-cli as angular-app
+LABEL authors="Jeroen van Lier"
 # Copy and install the Angular app
 WORKDIR /app
 COPY package.json /app
