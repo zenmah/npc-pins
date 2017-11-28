@@ -22,4 +22,4 @@ COPY --from=express-server /app /usr/src/app
 COPY --from=angular-app /app/dist /usr/src/app
 ENV PORT 80
 #ENV API_URL we-could-set-this-here-as-default
-CMD [ "node", "index.js" ]
+CMD [ "node", "index.js" ] 
