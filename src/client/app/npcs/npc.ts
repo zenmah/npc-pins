@@ -6,6 +6,6 @@ export class Npc {
     portrayal: String;
     hook: String;
     image_url: string;
-    campaign:string;
-    pinterest_id:String
+    campaign: string;
+    pinterest_id: string;
   }

@@ -8,7 +8,7 @@ import { Npc } from './npc';
 })
 export class NpcComponent implements OnInit {
 
-  @Input() Npc:Npc;
+  @Input() Npc: Npc;
   constructor() { }
 
   ngOnInit() {

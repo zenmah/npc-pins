@@ -1,4 +1,4 @@
-const Npc = require('./Npc.model');
+const Npc = require('./npc.model');
 const ReadPreference = require('mongodb').ReadPreference;
 
 require('./mongo').connect();
