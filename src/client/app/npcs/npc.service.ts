@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 import { Npc } from './npc';
 
-const api = 'http://localhost:3000/api';
+const api = '/api';
 
 @Injectable()
 export class NpcService {
   constructor(private http: HttpClient) {}
 
   getNpcs() {
-    return this.http.get<Array<Npc>>(`${api}/Npc`)
+    return this.http.get<Array<Npc>>(`${api}/Npc`);
   }
 
   deleteNpc(npc: Npc) {
