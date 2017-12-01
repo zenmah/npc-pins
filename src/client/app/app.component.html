@@ -1,4 +1,28 @@
 <mat-toolbar>
   <span>Welcome to {{title}}</span>
+  <button
+        class="btn btn-primary btn-margin"
+        routerLink="/">
+          Home
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="!auth.isAuthenticated()"
+        (click)="auth.login()">
+          Log In
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="auth.isAuthenticated()"
+        (click)="auth.logout()">
+          Log Out
+      </button>
 </mat-toolbar>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+
 <app-npcs></app-npcs>
