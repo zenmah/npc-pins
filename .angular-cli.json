@@ -26,7 +26,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": ["styles.scss"],
-      "scripts": ["../../node_modules/auth0-js/build/auth0.js"],
+      "scripts": ["../../node_modules/auth0-js/build/auth0.js"
+      , "../../lib/pinterest/sdk.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

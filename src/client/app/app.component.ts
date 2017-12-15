@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { PinsService } from './pins/pins.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'npc-pins';
 
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, private pins: PinsService) {
     auth.handleAuthentication();
   }
 

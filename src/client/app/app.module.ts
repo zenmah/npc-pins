@@ -14,6 +14,7 @@ import { PinsComponent } from './pins/pins.component';
 import { NpcComponent } from './npcs/npc.component';
 import { CallbackComponent } from './auth/callback.component';
 import { AuthService } from './auth/auth.service';
+import { PinsService } from './pins/pins.service';
 
 
 
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [NpcService, AuthService],
+  providers: [NpcService, AuthService, PinsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

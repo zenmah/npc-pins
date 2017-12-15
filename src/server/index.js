@@ -2,15 +2,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes/npc');
 
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
+
+
 const publicweb = './publicweb';
-const app = express();
+var sslOptions = {
+  key: fs.readFileSync('./dist/cert/keytmp.pem'),
+ cert: fs.readFileSync('./dist/cert/cert.pem'),
+  passphrase: 'sslpass'
+};
+
+var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(publicweb));
 console.log(`serving ${publicweb}`);
 
-app.use('/api', routes);
+app.use('/api', routes)
 
 app.get('*', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -19,4 +30,10 @@ app.get('*', (req, res) => {
 });
 
 const port = process.env.PORT || '3001';
-app.listen(port, () => console.log(`API running on localhost:${port}`));
+
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(sslOptions, app);
+
+//httpServer.listen(port, () => console.log(`httpServer: API running on localhost:${port}`));
+httpsServer.listen(port, () => console.log(`httpsServer: API running on localhost:${port}`));
