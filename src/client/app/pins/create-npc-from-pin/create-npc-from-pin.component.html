@@ -15,23 +15,43 @@
     <mat-tab label="About">
       <form class="example-form">
         <div class="example-full-width">
+          <div fxLayout="row">
+              <mat-form-field fxFlex="75%">
+                  <input matInput name="Name" placeholder="Name" [(ngModel)]="Npc.name">
+                </mat-form-field>
+            <mat-form-field fxFlex>
+              <mat-select name="campaignSelector" placeholder="Select a Campaign" [(ngModel)]="Npc.campaign">
+                <mat-option value="7thSea" selected>7th Sea</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+            <mat-form-field >
+                <mat-chip-list #npcTagList>
+                  <mat-chip *ngFor="let tag of Npc.tags" [selectable]="TagOptions.Selectable"
+                           [removable]="TagOptions.Removable" (remove)="removeTag(tag)">
+                    {{tag}}
+                    <mat-icon matChipRemove *ngIf="TagOptions.Removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Tags..."
+                         [matChipInputFor]="npcTagList"
+                         [matChipInputSeparatorKeyCodes]="TagOptions.SeparatorKeysCodes"
+                         [matChipInputAddOnBlur]="TagOptions.AddOnBlur"
+                         (matChipInputTokenEnd)="addTag($event)" />
+                </mat-chip-list>
+              </mat-form-field>
+
+
           <mat-form-field>
-            <input matInput name="Name" placeholder="Name" [(ngModel)]="Npc.name">
+            <textarea matInput name="Appearance" placeholder="Appearance" [(ngModel)]="Npc.appearance" matTextareaAutosize matAutosizeMinRows="2"
+              matAutosizeMaxRows="4"></textarea>
           </mat-form-field>
           <mat-form-field>
-            <mat-select name="campaignSelector" placeholder="Select a Campaign Boards" [(ngModel)]="Npc.campaign">
-              <mat-option value="7thSea" selected>7th Sea</mat-option>
-            </mat-select>
+            <textarea matInput name="Portrayal" placeholder="Portrayal" [(ngModel)]="Npc.portrayal" matTextareaAutosize matAutosizeMinRows="2"
+              matAutosizeMaxRows="4"></textarea>
           </mat-form-field>
           <mat-form-field>
-            <textarea matInput name="Appearance" placeholder="Appearance" [(ngModel)]="Npc.appearance" class="example-full-width"
-             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
-          </mat-form-field>
-          <mat-form-field>
-            <textarea matInput name="Portrayal" placeholder="Portrayal" [(ngModel)]="Npc.portrayal" class="example-full-width"></textarea>
-          </mat-form-field>
-          <mat-form-field>
-            <textarea matInput name="Hook" placeholder="Hook" [(ngModel)]="Npc.hook" class="example-full-width" ></textarea>
+            <textarea matInput name="Hook" placeholder="Hook" [(ngModel)]="Npc.hook" matTextareaAutosize
+            matAutosizeMinRows="2" matAutosizeMaxRows="4"></textarea>
           </mat-form-field>
         </div>
       </form>

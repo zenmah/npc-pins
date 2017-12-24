@@ -15,7 +15,8 @@ import {
   MatSelectModule,
   MatGridListModule,
   MatSidenavModule,
-  MatIconModule
+  MatIconModule,
+  MatChipsModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
@@ -41,7 +42,8 @@ const MATERIAL_COMPONENTS = [
   MatSelectModule,
   MatGridListModule,
   MatSidenavModule,
-  MatIconModule
+  MatIconModule,
+  MatChipsModule
 ];
 
 const appRoutes: Routes = [

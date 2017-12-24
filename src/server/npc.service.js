@@ -1,6 +1,6 @@
 const Npc = require('./npc.model');
 const ReadPreference = require('mongodb').ReadPreference;
-
+var mongoose = require('mongoose');
 require('./mongo').connect();
 
 function getNpcs(req, res) {
@@ -17,7 +17,7 @@ function getNpcs(req, res) {
 }
 
 function postNpc(req, res) {
-  const originalNpc = { 
+  const originalNpc = {
     _id: req.body._id,
     name: req.body.name,
     tags: req.body.tags,
@@ -28,6 +28,10 @@ function postNpc(req, res) {
     campaign: req.body.campaign,
     pinterest_id: req.body.pinterest_id
   };
+  if (!originalNpc._id)
+  {
+    originalNpc._id = mongoose.Types.ObjectId();
+  }
   const npc = new Npc(originalNpc);
   npc.save(error => {
     if (checkServerError(res, error)) return;
@@ -61,7 +65,7 @@ function putNpc(req, res) {
     image_url = originalNpc.image_url;
     campaign = originalNpc.campaign;
     pinterest_id = originalNpc.pinterest_id;
-    
+
     npc.save(error => {
       if (checkServerError(res, error)) return;
       res.status(200).json(npc);
@@ -85,6 +89,7 @@ function deleteNpc(req, res) {
 
 function checkServerError(res, error) {
   if (error) {
+    console.log(error);
     res.status(500).send(error);
     return error;
   }

@@ -18,7 +18,7 @@ export class NpcService {
   }
 
   addNpc(npc: Npc) {
-    return this.http.post<Npc>(`${api}/Npc/`, npc);
+    return this.http.post<Npc>(`${api}/npc/`, npc);
   }
 
   updateNpc(npc: Npc) {

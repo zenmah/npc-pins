@@ -2,12 +2,12 @@ export class Npc {
   constructor(image_url: string) {
     this.image_url = image_url;
   }
-  _id: String;
+  _id: string;
   name: string;
-  tags: [String];
-  appearance: String;
-  portrayal: String;
-  hook: String;
+  tags: string[] = [];
+  appearance: string;
+  portrayal: string;
+  hook: string;
   image_url: string;
   campaign: string;
   pinterest_id: string;

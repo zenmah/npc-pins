@@ -13,15 +13,16 @@
       </mat-form-field>
     </form>
   </div>
-  <div fxFlex=80 fxLayout="row">
-    <div fxFlex fxLayout="row" fxLayoutWrap fxLayoutAlign="space-align center">
-      <app-pin *ngFor="let pin of Pins" fxFlex="200px" [Pin]="pin" class="pin" (npcCreated)="createNpcFromPin($event)" (pinSelected)="selectPin($event)"></app-pin>
-    </div>
-    <mat-sidenav-container fxFlex>
-      <mat-sidenav mode="side" align="end" #sidenav closed class="mat-elevation-z6">
-        <app-create-npc-from-pin *ngIf="NewNpc" [Npc]="NewNpc" (npcSaved)="saveNpc($event)"></app-create-npc-from-pin>
-      </mat-sidenav>
-    </mat-sidenav-container>
-  </div>
+
+  <mat-drawer-container fxFlex="80">
+    <mat-drawer-content>
+      <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around none" >
+        <app-pin *ngFor="let pin of Pins" fxFlex="200px" [Pin]="pin" class="pin" (npcCreated)="createNpcFromPin($event)" (pinSelected)="selectPin($event)"></app-pin>
+      </div>
+    </mat-drawer-content>
+    <mat-drawer mode="side" align="end" #sidenav closed class="mat-elevation-z6 create-npc-drawer">
+      <app-create-npc-from-pin *ngIf="NewNpc" [Npc]="NewNpc" (npcSaved)="saveNpc($event)"></app-create-npc-from-pin>
+    </mat-drawer>
+  </mat-drawer-container>
 
 </div>
