@@ -5,26 +5,49 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 
-import {MatButtonModule, MatCardModule, MatToolbarModule, MatListModule, MatTabsModule} from '@angular/material';
-
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatListModule,
+  MatTabsModule,
+  MatInputModule,
+  MatSelectModule,
+  MatGridListModule,
+  MatSidenavModule,
+  MatIconModule
+} from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { NpcService } from './npcs/npc.service';
 import { NpcsComponent } from './npcs/npcs.component';
-import { PinsComponent } from './pins/pins.component';
 import { NpcComponent } from './npcs/npc.component';
+
 import { CallbackComponent } from './auth/callback.component';
 import { AuthService } from './auth/auth.service';
+
 import { PinsService } from './pins/pins.service';
+import { PinsComponent } from './pins/pins.component';
+import { PinComponent } from './pins/pin.component';
 
-
+const MATERIAL_COMPONENTS = [
+  MatButtonModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatListModule,
+  MatTabsModule,
+  MatInputModule,
+  MatSelectModule,
+  MatGridListModule,
+  MatSidenavModule,
+  MatIconModule
+];
 
 const appRoutes: Routes = [
   { path: 'npcs', component: NpcsComponent },
-  { path: 'home',      component: NpcsComponent },
+  { path: 'pins', component: PinsComponent },
   { path: '**', component: NpcsComponent }
 ];
-
-
 
 @NgModule({
   declarations: [
@@ -32,18 +55,16 @@ const appRoutes: Routes = [
     NpcsComponent,
     PinsComponent,
     NpcComponent,
-    CallbackComponent
+    CallbackComponent,
+    PinComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatListModule,
-    MatTabsModule,
+    ...MATERIAL_COMPONENTS,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
@@ -52,4 +73,4 @@ const appRoutes: Routes = [
   providers: [NpcService, AuthService, PinsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -25,4 +25,8 @@ router.delete('/npc/:id', (req, res) => {
 router.get('/pins', (req, res) => {
   pinService.getPins(req, res);
 });
+
+router.get('/boards', (req, res) => {
+  pinService.getBoards(req, res);
+});
 module.exports = router;

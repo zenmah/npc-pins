@@ -7,7 +7,7 @@ var https = require('https');
 var fs = require('fs');
 
 
-const publicweb = './publicweb';
+const publicweb = './dist/publicweb';
 var sslOptions = {
   key: fs.readFileSync('./dist/cert/keytmp.pem'),
  cert: fs.readFileSync('./dist/cert/cert.pem'),
@@ -23,6 +23,20 @@ console.log(`serving ${publicweb}`);
 
 app.use('/api', routes)
 
+app.use(function(req, res) {
+  return res.send('404');
+});
+
+app.use(function(err, req, res) {
+  switch (err.name) {
+    case 'CastError':
+      res.status(400); // Bad Request
+      return res.send('400');
+    default:
+      res.status(500); // Internal server error
+      return res.send('500');
+  }
+});
 app.get('*', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

@@ -13,6 +13,12 @@
             "outFiles": [
                 "${workspaceFolder}/dist/out-tsc/**/*.js"
             ]
-        }
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "server_dist",
+          "program": "${workspaceFolder}\\dist\\index.js",
+      }
     ]
 }

@@ -1,8 +1,8 @@
 export class Pin {
-    pin_id: String;
+    pin_id: string;
     pin_url: string;
-    image_url: String;
-    image_width: String;
-    image_height: String;
-    media_type: String;
+    image_url: string;
+    image_width: string;
+    image_height: string;
+    media_type: string;
   }
