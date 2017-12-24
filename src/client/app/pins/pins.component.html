@@ -1,9 +1,11 @@
-<section class="mat-typography">
-
-  <h1 *ngIf="!SelectedBoard">No Board Selected </h1>
-  <h1 *ngIf="SelectedBoard">{{SelectedBoard.board_name}} Pins</h1>
-
-  <form name="boardForm">
+<div fxLayout="column" style="margin: 1em">
+<div fxFlex="20" fxLayout="row">
+  <section class="mat-typography">
+    <h1 *ngIf="!SelectedBoard">No Board Selected </h1>
+    <h1 *ngIf="SelectedBoard">{{SelectedBoard.board_name}} Pins</h1>
+  </section>
+  <span fxFlex="grow"></span>
+  <form fxFlexAlign="end" name="boardForm">
     <mat-form-field>
       <mat-select name="boardSelector" placeholder="Pinterest Boards" [(ngModel)]="selectedBoardId" (selectionChange)="changeBoard(selectedBoardId)">
         <mat-option *ngFor="let board of Boards" [value]="board.board_id">
@@ -12,23 +14,9 @@
       </mat-select>
     </mat-form-field>
   </form>
+</div>
 
-  <div fxLayout="row" fxLayoutWrap fxFlexAlign="space-align center" fxLayoutGap="1">
-        <app-pin *ngFor="let pin of Pins" fxFlex="200px" [Pin]="pin" class="pin"></app-pin>
-  </div>
-
-
-
-
-</section>
-
-
-<!-- <div fxLayout="row" fxLayoutWrap>
-    <div *ngFor="let pin of Pins" fxFlex="19" xLayoutAlign="space-evenly center" style="height: 300px;">
-      <img mat-card-image src="{{pin.image_url}}">
-      <button mat-fab (click)="createNpc(pin)">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-
-  </div> -->
+<div fxFlex="40" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-align center" >
+  <app-pin *ngFor="let pin of Pins" fxFlex="200px" [Pin]="pin" class="pin"></app-pin>
+</div>
+</div>
