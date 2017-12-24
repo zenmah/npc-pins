@@ -1,37 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Pin } from './pin';
 import { PinsService } from './pins.service';
 import { PinBoard } from './PinBoard';
+import { Npc } from '../npcs/npc';
+import { NpcService } from '../npcs/npc.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-pins',
   templateUrl: './pins.component.html',
-  styles: [
-    `
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  .example-full-width {
-    width: 100%;
-  }
-  .pin  {
-    height:300px;
-  }`
-  ]
+  styleUrls: ['./pins.component.scss']
 })
 export class PinsComponent implements OnInit {
+  ShowDetails: boolean;
   Pins: Pin[] = [];
   Boards: PinBoard[] = [];
   SelectedBoard: PinBoard;
   selectedBoardId = '';
   BoardId: string;
   Cursor: string;
-  selectedPin: Pin;
+  SelectedPin: Pin;
+  NewNpc: Npc;
 
-  constructor(private pinService: PinsService) {}
+  constructor(private pinService: PinsService, private npcService: NpcService) {}
 
+  @ViewChild('sidenav') sidenav: MatSidenav;
   ngOnInit() {
     this.getBoards();
   }
@@ -62,6 +55,14 @@ export class PinsComponent implements OnInit {
         this.Cursor = pins.cursor;
       });
     }
+  }
+
+  createNpcFromPin(pin: Pin) {
+    this.NewNpc = new Npc(pin.image_url);
+    this.sidenav.open();
+  }
+  saveNpc(npc: Npc) {
+    this.npcService.addNpc(npc).subscribe();
   }
 
 }

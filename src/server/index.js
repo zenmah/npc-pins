@@ -7,10 +7,10 @@ var https = require('https');
 var fs = require('fs');
 
 
-const publicweb = './dist/publicweb';
+const publicweb = './publicweb';
 var sslOptions = {
-  key: fs.readFileSync('./dist/cert/keytmp.pem'),
- cert: fs.readFileSync('./dist/cert/cert.pem'),
+  key: fs.readFileSync('./cert/keytmp.pem'),
+ cert: fs.readFileSync('./cert/cert.pem'),
   passphrase: 'sslpass'
 };
 
@@ -22,6 +22,13 @@ app.use(express.static(publicweb));
 console.log(`serving ${publicweb}`);
 
 app.use('/api', routes)
+
+
+app.get('*', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.sendFile(`index.html`, { root: publicweb });
+});
 
 app.use(function(req, res) {
   return res.send('404');
@@ -36,11 +43,6 @@ app.use(function(err, req, res) {
       res.status(500); // Internal server error
       return res.send('500');
   }
-});
-app.get('*', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.sendFile(`index.html`, { root: publicweb });
 });
 
 const port = process.env.PORT || '3001';

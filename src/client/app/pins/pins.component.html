@@ -1,22 +1,27 @@
 <div fxLayout="column" style="margin: 1em">
-<div fxFlex="20" fxLayout="row">
-  <section class="mat-typography">
-    <h1 *ngIf="!SelectedBoard">No Board Selected </h1>
-    <h1 *ngIf="SelectedBoard">{{SelectedBoard.board_name}} Pins</h1>
-  </section>
-  <span fxFlex="grow"></span>
-  <form fxFlexAlign="end" name="boardForm">
-    <mat-form-field>
-      <mat-select name="boardSelector" placeholder="Pinterest Boards" [(ngModel)]="selectedBoardId" (selectionChange)="changeBoard(selectedBoardId)">
-        <mat-option *ngFor="let board of Boards" [value]="board.board_id">
-          {{ board.board_name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
-</div>
+  <div fxFlex="20" fxLayout="row">
+    <h1 fxFlex="50%" *ngIf="!SelectedBoard">No Board Selected </h1>
+    <h1 fxFlex="50%" *ngIf="SelectedBoard">{{SelectedBoard.board_name}} Pins</h1>
+    <span fxFlex="grow"></span>
+    <form fxFlexAlign="end" name="boardForm">
+      <mat-form-field>
+        <mat-select name="boardSelector" placeholder="Pinterest Boards" [(ngModel)]="selectedBoardId" (selectionChange)="changeBoard(selectedBoardId)">
+          <mat-option *ngFor="let board of Boards" [value]="board.board_id">
+            {{ board.board_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div fxFlex=80 fxLayout="row">
+    <div fxFlex fxLayout="row" fxLayoutWrap fxLayoutAlign="space-align center">
+      <app-pin *ngFor="let pin of Pins" fxFlex="200px" [Pin]="pin" class="pin" (npcCreated)="createNpcFromPin($event)" (pinSelected)="selectPin($event)"></app-pin>
+    </div>
+    <mat-sidenav-container fxFlex>
+      <mat-sidenav mode="side" align="end" #sidenav closed class="mat-elevation-z6">
+        <app-create-npc-from-pin *ngIf="NewNpc" [Npc]="NewNpc" (npcSaved)="saveNpc($event)"></app-create-npc-from-pin>
+      </mat-sidenav>
+    </mat-sidenav-container>
+  </div>
 
-<div fxFlex="40" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-align center" >
-  <app-pin *ngFor="let pin of Pins" fxFlex="200px" [Pin]="pin" class="pin"></app-pin>
-</div>
 </div>

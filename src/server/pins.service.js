@@ -33,7 +33,7 @@ function makeResultObject(data, cursor) {
 function getBoards(req, res) {
   var options = makeOptionsFromParams("id,name,url,description", req);
 
-  pinterest.api(`me/boards/`, options).then(json => {
+  pinterest.api(`me/boards`, options).then(json => {
     console.log(json.data);
     var boardsMapped = json.data.map(function(obj) {
       var rObj = {

@@ -18,7 +18,11 @@
           "type": "node",
           "request": "launch",
           "name": "server_dist",
-          "program": "${workspaceFolder}\\dist\\index.js",
+          "program": "${workspaceFolder}\\src\\server\\index.js",
+          "sourceMaps": true,
+          "outFiles":[
+            "${workspaceFolder}/dist/**/*.js"
+          ]
       }
     ]
 }

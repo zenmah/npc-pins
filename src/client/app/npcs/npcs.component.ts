@@ -40,7 +40,7 @@ export class NpcsComponent implements OnInit {
 
   enableAddMode() {
     this.addingNpc = true;
-    this.selectedNpc = new Npc();
+    this.selectedNpc = new Npc('');
   }
 
   onSelect(npc: Npc) {

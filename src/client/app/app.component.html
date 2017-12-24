@@ -1,40 +1,32 @@
-<!-- flex container displaying children as a column -->
 <section class="app flex-container" fxLayout="column" fxLayoutAlign="start stretch">
 
-  <mat-toolbar color="primary" class="mat-elevation-z10" >
+  <mat-toolbar color="primary" class="mat-elevation-z10">
     <span>Create Npc's from Pins</span>
     <div fxLayout="row">
-        <button mat-button routerLink="/">
-          Home
-        </button>
-        <button mat-button routerLink="/npcs">
-          Npcs
-        </button>
-        <button mat-button routerLink="/pins">
-          Pins
-        </button>
-        <span fxFlexFill></span>
+      <button mat-button routerLink="/">
+        Home
+      </button>
+      <button mat-button routerLink="/npcs">
+        Npcs
+      </button>
+      <button mat-button routerLink="/pins">
+        Pins
+      </button>
+      <span fxFlexFill></span>
 
-        <button mat-button fxFlexAlign="end" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
-          Log In
-        </button>
+      <button mat-button fxFlexAlign="end" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+        Log In
+      </button>
 
-        <button mat-button fxFlexAlign="end" color="warn" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">
-          Log Out
-        </button>
+      <button mat-button fxFlexAlign="end" color="warn" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">
+        Log Out
+      </button>
     </div>
 
   </mat-toolbar>
 
   <div fxFlex fxLayout="row">
-      <router-outlet fxFlex></router-outlet>
-      <mat-sidenav-container fxFlex >
-          <mat-sidenav mode="side" align="end" closed class="mat-elevation-z6">
-            <mat-tab-group>
-              <mat-tab label="About"></mat-tab>
-              <mat-tab label="Notes"></mat-tab>
-            </mat-tab-group>
-          </mat-sidenav>
-        </mat-sidenav-container>
+    <router-outlet></router-outlet>
+    <div></div>
   </div>
 </section>

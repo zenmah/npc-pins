@@ -29,6 +29,7 @@ import { AuthService } from './auth/auth.service';
 import { PinsService } from './pins/pins.service';
 import { PinsComponent } from './pins/pins.component';
 import { PinComponent } from './pins/pin.component';
+import { CreateNpcFromPinComponent } from './pins/create-npc-from-pin/create-npc-from-pin.component';
 
 const MATERIAL_COMPONENTS = [
   MatButtonModule,
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     PinsComponent,
     NpcComponent,
     CallbackComponent,
-    PinComponent
+    PinComponent,
+    CreateNpcFromPinComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,43 @@
+<div fxLayout="row" *ngIf="Npc" style="margin: 5">
+  <div fxFLex="150px">
+    <h2 *ngIf="Npc.name !== ''">{{Npc.name}}</h2>
+    <i *ngIf="Npc.name === ''">Give the Npc a name</i>
+  </div>
+  <span fxFlex="grow"></span>
+  <div fxFlex fxLayout="end">
+    <button mat-mini-fab (click)="saveNpc()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</div>
+<div>
+  <mat-tab-group>
+    <mat-tab label="About">
+      <form class="example-form">
+        <div class="example-full-width">
+          <mat-form-field>
+            <input matInput name="Name" placeholder="Name" [(ngModel)]="Npc.name">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select name="campaignSelector" placeholder="Select a Campaign Boards" [(ngModel)]="Npc.campaign">
+              <mat-option value="7thSea" selected>7th Sea</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput name="Appearance" placeholder="Appearance" [(ngModel)]="Npc.appearance" class="example-full-width"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput name="Portrayal" placeholder="Portrayal" [(ngModel)]="Npc.portrayal" class="example-full-width"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput name="Hook" placeholder="Hook" [(ngModel)]="Npc.hook" class="example-full-width" ></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Photos">
+      <img src="{{Npc.image_url}}" />
+    </mat-tab>
+  </mat-tab-group>
+</div>
